@@ -563,9 +563,6 @@ Resources:
             MetricIntervalUpperBound: 0
     DependsOn: ServiceScalingTarget
 
-  # TODO - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html
-  # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html#cfn-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-metricaggregationtype
-
   ServiceScaleOutAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
