@@ -63,8 +63,8 @@ Parameters:
   ServiceScaleEvaluationPeriods:
     Description: The number of periods over which data is compared to the specified threshold
     Type: Number
-    Default: 2
-    MinValue: 2
+    Default: 1
+    MinValue: 1
 
   ServiceSqsScaleOutThreshold:
     Type: Number
