@@ -76,9 +76,9 @@ Parameters:
   ServiceSqsScaleInThreshold:
     Type: Number
     Description: SQS visible message scale in
-    Default: 0
-    MinValue: 0
-    ConstraintDescription: Value must be between 0 and 100
+    Default: 1
+    MinValue: 1
+    ConstraintDescription: Value must be at least one
 
   ServiceSqsScaleOutAdjustment:
     Type: Number
