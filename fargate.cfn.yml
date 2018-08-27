@@ -559,7 +559,7 @@ Resources:
         Cooldown: 300
         MetricAggregationType: Maximum
         StepAdjustments:
-          - ScalingAdjustment: -1
+          - ScalingAdjustment: !Ref ServiceSqsScaleOutAdjustment
             MetricIntervalUpperBound: 0
     DependsOn: ServiceScalingTarget
 
