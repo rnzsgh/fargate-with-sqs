@@ -76,13 +76,20 @@ Parameters:
   ServiceSqsScaleInThreshold:
     Type: Number
     Description: SQS visible message scale in
-    Default: 1
-    MinValue: 1
-    ConstraintDescription: Value must be at least one
+    Default: 0
+    MinValue: 0
+    ConstraintDescription: Min value is zero
 
   ServiceSqsScaleOutAdjustment:
     Type: Number
     Description: Service scale out based on SQS queue depth
+    Default: 1
+    MinValue: 1
+    ConstraintDescription: Value must at least one
+
+  ServiceSqsScaleInAdjustment:
+    Type: Number
+    Description: Service scale in based on SQS queue depth
     Default: 1
     MinValue: 1
     ConstraintDescription: Value must at least one
@@ -559,7 +566,7 @@ Resources:
         Cooldown: 300
         MetricAggregationType: Maximum
         StepAdjustments:
-          - ScalingAdjustment: !Ref ServiceSqsScaleOutAdjustment
+          - ScalingAdjustment: !Ref ServiceSqsScaleInAdjustment
             MetricIntervalUpperBound: 0
     DependsOn: ServiceScalingTarget
 
@@ -598,7 +605,7 @@ Resources:
       Dimensions:
         - Name: QueueName
           Value: !GetAtt ProcessingQueue.QueueName
-      ComparisonOperator: LessThanThreshold
+      ComparisonOperator: LessThanOrEqualToThreshold
       MetricName: ApproximateNumberOfMessagesVisible
     DependsOn:
       - ServiceScaleInPolicy
