@@ -563,7 +563,7 @@ Resources:
       ScalingTargetId: !Ref ServiceScalingTarget
       StepScalingPolicyConfiguration:
         AdjustmentType: ChangeInCapacity
-        Cooldown: 300
+        Cooldown: 60
         MetricAggregationType: Maximum
         StepAdjustments:
           - ScalingAdjustment: !Ref ServiceSqsScaleInAdjustment
@@ -585,7 +585,7 @@ Resources:
       Dimensions:
         - Name: QueueName
           Value: !GetAtt ProcessingQueue.QueueName
-      ComparisonOperator: GreaterThanThreshold
+      ComparisonOperator: GreaterThanOrEqualToThreshold
       MetricName: ApproximateNumberOfMessagesVisible
     DependsOn:
       - ServiceScaleOutPolicy
