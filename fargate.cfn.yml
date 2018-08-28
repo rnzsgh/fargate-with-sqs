@@ -436,6 +436,8 @@ Resources:
                 Action:
                   - sqs:SendMessage
                   - sqs:ReceiveMessage
+                  - sqs:DeleteMessage
+                  - sqs:GetQueueUrl
                 Resource: !GetAtt ProcessingQueue.Arn
 
   TaskExecutionRole:
