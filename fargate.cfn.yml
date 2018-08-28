@@ -578,7 +578,7 @@ Resources:
       TreatMissingData: notBreaching
       Threshold: !Ref ServiceSqsScaleOutThreshold
       AlarmDescription: Alarm to add capacity if SQS queue has messages
-      Period: 60
+      Period: 300
       AlarmActions:
         - !Ref ServiceScaleOutPolicy
       Namespace: AWS/SQS
@@ -598,7 +598,7 @@ Resources:
       TreatMissingData: notBreaching
       Threshold: !Ref ServiceSqsScaleInThreshold
       AlarmDescription: Alarm to reduce capacity if SQS queue is empty
-      Period: 60
+      Period: 300
       AlarmActions:
         - !Ref ServiceScaleInPolicy
       Namespace: AWS/SQS
