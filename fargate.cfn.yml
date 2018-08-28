@@ -90,9 +90,9 @@ Parameters:
   ServiceSqsScaleInAdjustment:
     Type: Number
     Description: Service scale in based on SQS queue depth
-    Default: 1
-    MinValue: 1
-    ConstraintDescription: Value must at least one
+    Default: -1
+    MaxValue: -1
+    ConstraintDescription: Value must at least negative one
 
   TaskMinContainerCount:
     Type: Number
@@ -598,7 +598,7 @@ Resources:
       TreatMissingData: notBreaching
       Threshold: !Ref ServiceSqsScaleInThreshold
       AlarmDescription: Alarm to reduce capacity if SQS queue is empty
-      Period: 300
+      Period: 60
       AlarmActions:
         - !Ref ServiceScaleInPolicy
       Namespace: AWS/SQS
