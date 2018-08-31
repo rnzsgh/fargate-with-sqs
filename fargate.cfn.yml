@@ -60,11 +60,17 @@ Parameters:
     ConstraintDescription: "Value must be between 512 and 30720 - see: https://aws.amazon.com/fargate/pricing/"
 
   # Scaling params
-  ServiceScaleEvaluationPeriods:
+  ServiceScaleOutEvaluationPeriods:
     Description: The number of periods over which data is compared to the specified threshold
     Type: Number
     Default: 1
     MinValue: 1
+
+  ServiceScaleInEvaluationPeriods:
+    Description: The number of periods over which data is compared to the specified threshold
+    Type: Number
+    Default: 2
+    MinValue: 2
 
   ServiceSqsScaleOutThreshold:
     Type: Number
@@ -575,7 +581,7 @@ Resources:
   ServiceScaleOutAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
-      EvaluationPeriods: !Ref ServiceScaleEvaluationPeriods
+      EvaluationPeriods: !Ref ServiceScaleOutEvaluationPeriods
       Statistic: Sum
       TreatMissingData: notBreaching
       Threshold: !Ref ServiceSqsScaleOutThreshold
@@ -595,7 +601,7 @@ Resources:
   ServiceScaleInAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
-      EvaluationPeriods: !Ref ServiceScaleEvaluationPeriods
+      EvaluationPeriods: !Ref ServiceScaleInEvaluationPeriods
       Statistic: Sum
       TreatMissingData: notBreaching
       Threshold: !Ref ServiceSqsScaleInThreshold
