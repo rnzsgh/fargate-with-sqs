@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NETWORK_STACK_NAME=open-network
+NETWORK_STACK_NAME=base-network
 
 FARGATE_STACK_NAME=batch0
 
@@ -11,7 +11,7 @@ aws iam create-service-linked-role --aws-service-name ecs.amazonaws.com 2> /dev/
 
 aws cloudformation create-stack  --region us-east-1 --stack-name $NETWORK_STACK_NAME --capabilities CAPABILITY_NAMED_IAM --template-body file://vpc.cfn.yml
 
-ws cloudformation wait stack-create-complete --stack-name $NETWORK_STACK_NAME
+aws cloudformation wait stack-create-complete --stack-name $NETWORK_STACK_NAME
 
 
 # ##############################################################################
